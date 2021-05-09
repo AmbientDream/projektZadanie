@@ -1,0 +1,67 @@
+<html lang="pl">
+<head>
+  <title>TEST</title>
+</head>
+<body>
+<h1>Film: <span id="title">{{title}}</span> <span id="year">({{year}})</span></h1>
+<ul id="infoMovie">
+  <li><b>Reżyseria:</b> {{director}}</li>
+  <li><b>Scenariusz:</b> {{others.writer}}</li>
+  <li><b>Gatunek:</b> {{others.genre}}</li>
+  <li><b>Główna obsada:</b> {{others.starring}}</li>
+</ul>
+
+<form (submit)="addTask(task.value)">
+  <div>
+    <label for="TaskField" id="filmReview">Dodaj recenzję:</label><br>
+    <textarea id="review" name="review" rows="10" cols="100" #task id="TaskField">
+</textarea>
+  </div>
+</form>
+
+<button (click)="addTask(task.value)" class="add">Dodaj recenzję</button>
+
+<ul>
+  <li *ngFor="let task of review; let i = index">
+    <p>
+      {{i + 1}}. {{task}}
+      <br>
+      <button (click)="deleteTask(task)" class="del">Usuń recenzję</button>
+    </p>
+  </li>
+</ul>
+
+<div>
+  <button (click)="changeEditMode()" class="change">Zmień film</button>
+</div>
+
+<div *ngIf="editMode">
+  <form>
+    <div>
+      <label>Tytuł:</label><br>
+      <input type="text" [(ngModel)]="title" name="title">
+    </div>
+    <div>
+      <label>Rok premiery:</label><br>
+      <input type="text" [(ngModel)]="year" name="year">
+    </div>
+    <div>
+      <label>Reżyseria:</label><br>
+      <input type="text" [(ngModel)]="director" name="director">
+    </div>
+    <div>
+      <label>Scenariusz:</label><br>
+      <input type="text" [(ngModel)]="others.writer" name="flatNo">
+    </div>
+    <div>
+      <label>Gatunek:</label><br>
+      <input type="text" [(ngModel)]="others.genre" name="genre">
+    </div>
+    <div>
+      <label>Główna obsada:</label><br>
+      <input type="text" [(ngModel)]="others.starring" name="houseNo">
+    </div>
+  </form>
+</div>
+</body>
+</html>
